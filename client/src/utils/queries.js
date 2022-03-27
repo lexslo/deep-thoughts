@@ -57,4 +57,53 @@ const QUERY_USER = gql `
     }
 `;
 
-export { QUERY_THOUGHTS, QUERY_THOUGHT, QUERY_USER };
+// since no variables are passed can simply name the query
+const QUERY_ME = gql `
+    {
+        me {
+            _id
+            username
+            email
+            friendCount
+            thoughts {
+                _id
+                thoughtText
+                createdAt
+                reactionCount
+                reactions {
+                    _id
+                    createdAt
+                    reactionBody
+                    username
+                }
+            }
+            friends {
+                _id
+                username
+            }
+        }
+    }
+`;
+
+const QUERY_ME_BASIC = gql `
+    {
+        me {
+            _id
+            username
+            email
+            friendCount
+            friends {
+                _id
+                username
+            }
+        }
+    }
+`;
+
+export { 
+    QUERY_THOUGHTS, 
+    QUERY_THOUGHT, 
+    QUERY_USER, 
+    QUERY_ME, 
+    QUERY_ME_BASIC 
+};
