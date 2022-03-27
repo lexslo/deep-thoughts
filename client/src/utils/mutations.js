@@ -38,8 +38,40 @@ const ADD_FRIEND = gql `
     }
 `;
 
+const ADD_THOUGHT = gql `
+    mutation addThought($thoughtText: String!) {
+        addThought(thoughtText: $thoughtText) {
+            _id
+            thoughtText
+            createdAt
+            username
+            reactionCount
+            reactions {
+                _id
+            }
+        }
+    }
+`;
+
+const ADD_REACTION = gql `
+    mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
+        addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
+            _id
+            reactionCount
+            reactions {
+                _id
+                reactionBody
+                createdAt
+                username
+            }
+        }
+    }
+`;
+
 export { 
     LOGIN_USER, 
     ADD_USER,
-    ADD_FRIEND 
+    ADD_FRIEND,
+    ADD_THOUGHT,
+    ADD_REACTION 
 };
